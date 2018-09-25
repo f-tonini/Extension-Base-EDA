@@ -2,8 +2,7 @@
 //  Forest Service Northern Research Station, Institute for Applied Ecosystem Studies
 //  Authors:  Francesco Tonini, Brian R. Miranda, Chris Jones
 
-using Edu.Wisc.Forest.Flel.Util;
-
+using Landis.Utilities;
 namespace Landis.Extension.BaseEDA
 {
     /// <summary>
@@ -31,10 +30,12 @@ namespace Landis.Extension.BaseEDA
                 return ecoModifier;
             }
             set {
+                if (value < -10.0 || value > 10.0)
+                    throw new InputValueException(value.ToString(),
+                        "Value must be > -10 and < 10.");
                 ecoModifier = value;
             }
         }
-
         //---------------------------------------------------------------------
         public EcoParameters()
         {
